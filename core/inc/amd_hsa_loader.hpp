@@ -77,6 +77,19 @@ typedef uint32_t hsa_symbol_info32_t;
 typedef hsa_executable_symbol_t hsa_symbol_t;
 typedef hsa_executable_symbol_info_t hsa_symbol_info_t;
 
+
+struct BrigModuleHeader {
+  char identification[8];
+  uint32_t brigMajor;
+  uint32_t brigMinor;
+  uint64_t byteCount;
+  uint8_t hash[64];
+  uint32_t reserved;
+  uint32_t sectionCount;
+  uint64_t sectionIndex;
+};
+
+
 namespace amd {
 namespace hsa {
 namespace loader {
@@ -84,6 +97,7 @@ namespace loader {
 //===----------------------------------------------------------------------===//
 // Context.                                                                   //
 //===----------------------------------------------------------------------===//
+
 
 class Context {
 public:
@@ -304,6 +318,9 @@ public:
       amd_loaded_code_object_t loaded_code_object,
       void *data),
     void *data) = 0;
+
+    virtual void AddModule(BrigModuleHeader *module){}
+    virtual std::vector<BrigModuleHeader *> *GetAllModules() { return nullptr; }
 
 protected:
   Executable() {}
