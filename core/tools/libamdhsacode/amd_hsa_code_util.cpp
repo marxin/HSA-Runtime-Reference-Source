@@ -76,7 +76,7 @@ namespace common {
 bool IsAccessibleMemoryAddress(uint64_t address)
 {
   if (0 == address) {
-    return nullptr;
+    return false;
   }
 #if defined(_WIN32) || defined(_WIN64)
     MEMORY_BASIC_INFORMATION memory_info;
