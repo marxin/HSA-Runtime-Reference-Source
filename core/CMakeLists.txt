@@ -151,4 +151,4 @@ add_library ( ${CORE_RUNTIME_LIB} SHARED ${CORE_SRCS} )
 
 set_property ( TARGET ${CORE_RUNTIME_LIB} PROPERTY SOVERSION 1 )
 
-target_link_libraries ( ${CORE_RUNTIME_LIB} hsakmt elf c stdc++ dl pthread rt )
+target_link_libraries ( ${CORE_RUNTIME_LIB} hsakmt elf c stdc++ dl pthread rt atomic )
